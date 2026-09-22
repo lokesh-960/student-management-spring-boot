@@ -1,0 +1,7 @@
+POST http://localhost:8081/students
+Content-Type: application/json
+
+{
+  "name": "Lokesh",
+  "age": 21
+}
