@@ -3,6 +3,7 @@ package com.example.studentmanagement.service;
 import com.example.studentmanagement.model.Student;
 import com.example.studentmanagement.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import com.example.studentmanagement.exception.StudentNotFoundException;
 
 import java.util.List;
 
@@ -42,4 +43,13 @@ public class StudentService {
     public void deleteStudent(Integer id) {
         studentRepository.deleteById(id);
     }
+
+    public Student getStudentById(Integer id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() ->
+                        new StudentNotFoundException(
+                                "Student with id " + id + " not found"
+                        ));
+    }
+
 }
